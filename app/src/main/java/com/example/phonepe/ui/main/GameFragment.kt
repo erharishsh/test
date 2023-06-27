@@ -37,7 +37,7 @@ class GameFragment : Fragment() {
     fun addNameChangeListener() {
         binding.input.doOnTextChanged { text, start, before, count ->
             if (count == viewModel.gameLiveData.value?.name?.length) {
-                onInputComplete()
+                onInputComplete(text.toString())
             }
         }
     }
@@ -63,8 +63,8 @@ class GameFragment : Fragment() {
     }
 
 
-    private fun onInputComplete() {
-        if (viewModel.checkName("")) {
+    private fun onInputComplete(text:String) {
+        if (viewModel.checkName(text)) {
             viewModel.switchToNextGamePage()
         }
     }
